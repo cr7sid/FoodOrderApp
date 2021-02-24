@@ -23,19 +23,14 @@ public class OrderedItemActivity extends AppCompatActivity {
         binding = ActivityOrderedItemBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        ArrayList<OrderModel> orderModels = new ArrayList<>();
-
-        orderModels.add(new OrderModel(R.drawable.burger, "Burger", "5", "5235435"));
-        orderModels.add(new OrderModel(R.drawable.pizza, "Pizza", "10", "1234230"));
-        orderModels.add(new OrderModel(R.drawable.burger, "Chicken", "15", "1353425"));
-        orderModels.add(new OrderModel(R.drawable.pizza, "Nuggets", "20", "22434230"));
-        orderModels.add(new OrderModel(R.drawable.burger, "Main", "25", "223425"));
+        DBHelper dbHelper = new DBHelper(this);
+        ArrayList<OrderModel> orderModels = dbHelper.getOrder();
 
         OrderAdapter adapter = new OrderAdapter(orderModels, this);
-        binding.recyclerView.setAdapter(adapter);
+        binding.orderedRecyclerView.setAdapter(adapter);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        binding.recyclerView.setLayoutManager(linearLayoutManager);
+        binding.orderedRecyclerView.setLayoutManager(linearLayoutManager);
         
     }
 }

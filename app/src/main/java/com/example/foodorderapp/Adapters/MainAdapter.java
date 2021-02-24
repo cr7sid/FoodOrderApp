@@ -1,12 +1,14 @@
 package com.example.foodorderapp.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.foodorderapp.ItemDetailsActivity;
 import com.example.foodorderapp.Models.MainModel;
 import com.example.foodorderapp.R;
 
@@ -44,6 +46,23 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         holder.tvName.setText(model.getName());
         holder.tvDescription.setText(model.getDescription());
         holder.tvPrice.setText(model.getPrice());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, ItemDetailsActivity.class);
+                intent.putExtra("image", model.getImage());
+                intent.putExtra("name", model.getName());
+                intent.putExtra("price", model.getPrice());
+                intent.putExtra("type", 1);
+                intent.putExtra("description", model.getDescription());
+
+                context.startActivity(intent);
+
+            }
+        });
 
     }
 
